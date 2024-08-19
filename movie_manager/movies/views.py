@@ -5,7 +5,7 @@ def create(request):
     if request.POST :
         print(request.POST.get ('title'))
         print(request.POST.get ('year'))
-
+        
     return render(request, 'create.html')
 
 def edit(request):
@@ -33,7 +33,6 @@ def list(request):
         'year': '2005',
         'summary': 'rise of a new star',
         'success': True,
-        'img':'godfather.jpg'
         },
         {
         'title': 'redemption',
@@ -46,7 +45,7 @@ def list(request):
         'title': 'king',
         'year': '1997',
         'summary': 'the story of a king and his castle ',
-        'success': False,
+        'success': True,
         }
 
         ]}
