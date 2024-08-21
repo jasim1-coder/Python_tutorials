@@ -5,4 +5,6 @@ urlpatterns = [
     path('create/', views.create, name='create'),
     path('edit/', views.edit, name='edit'),
     path('lsit/', views.list, name='list'),
+    path('', views.create, name='edit'),
+
 ]

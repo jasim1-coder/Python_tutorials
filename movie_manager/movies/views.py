@@ -1,52 +1,24 @@
 from django.shortcuts import render
-
+from . models import movie_info
+from . forms import movie_form
 # Create your views here.
 def create(request):
     if request.POST :
-        print(request.POST.get ('title'))
-        print(request.POST.get ('year'))
+        frm=movie_form(request.POST)
+        if frm.is_valid():
+            frm.save()
+    else:
+        frm=movie_form()
+
+
+
         
-    return render(request, 'create.html')
+    return render(request, 'create.html', {'frm':frm})
 
 def edit(request):
     return render(request, 'edit.html')
 
 def list(request):
-     movies_data ={
-        'movies': [
-        {
-        'title': 'godfather',
-        'year': '1997',
-        'summary': 'story of a under world king',
-        'success': False,
-        'img':'godfather.jpg'
-        },
-        {
-        'title': 'Batman',
-        'year': '2000',
-        'summary': 'story of a unknownvhero',
-        'success': True,
-        'img':'batman.jpg'
-        },
-        {
-        'title': 'spiderman',
-        'year': '2005',
-        'summary': 'rise of a new star',
-        'success': True,
-        },
-        {
-        'title': 'redemption',
-        'year': '1995',
-        'summary': 'story of a prisnor',
-        'success': False,
-        'img':'redemtion.jpg'
-        },
-        {
-        'title': 'king',
-        'year': '1997',
-        'summary': 'the story of a king and his castle ',
-        'success': True,
-        }
-
-        ]}
-     return render(request, 'list.html', movies_data)
+     movies_data = movie_info.objects.all()
+     print(movies_data)
+     return render(request, 'list.html', {'movies': movies_data})
